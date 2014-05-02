@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "Tabster",
+  "description": "Manage tabs",
+  "version": "1.0",
+
+  "permissions": [
+    "contentSettings",
+    "tabs",
+    "tabCapture"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*"],
+      "css": ["content.css"],
+      "js": ["content.js"]
+    }
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+T"
+      }
+    }
+  }
+}
