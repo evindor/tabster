@@ -34,9 +34,14 @@
 	white-space: nowrap;
 	width: 100%;
 	overflow: hidden;
+	position: relative;
 }
 
 .tabster-tab-url {
 	font-size: 12px;
 	color: #ddd;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
 }

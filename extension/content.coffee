@@ -18,8 +18,8 @@ port.onMessage.addListener (tabs) ->
 	for tab in tabs
 		tabView = document.createElement 'div'
 		tabView.className = 'tabster-tab'
-		tabView.innerHTML = "<div class='tabster-tab-title'>#{tab.title.substring(0, 40)}</div>
-		<div class='tabster-tab-url'>#{tab.url.replace(/^http(s)?:\/\//, "").substring(0, 40);}</div>"
+		tabView.innerHTML = "<div class='tabster-tab-title'>#{tab.title}</div>
+		<div class='tabster-tab-url'>#{tab.url.replace(/^http(s)?:\/\//, "")}</div>"
 		tabsView.appendChild(tabView)
 
 	overflow.className += " visible"
