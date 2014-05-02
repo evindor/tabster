@@ -21,5 +21,16 @@ port.onMessage.addListener (tabs) ->
 		tabView.innerHTML = "<div class='tabster-tab-title'>#{tab.title}</div>
 		<div class='tabster-tab-url'>#{tab.url.replace(/^http(s)?:\/\//, "")}</div>"
 		tabsView.appendChild(tabView)
+		tabView.addEventListener('click', tabsterSwitchTab.bind(this, tab.id), false)
 
 	overflow.className += " visible"
+
+tabsterSwitchTab = (id) ->
+	tabsterClose()
+	port.postMessage(
+		method: "switchTab"
+		id: id
+	)
+
+tabsterClose = () ->
+	overflow.className = 'tabster-overflow'

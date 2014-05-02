@@ -4,4 +4,8 @@ chrome.runtime.onConnect.addListener((port)->
 			port.postMessage(tabs)
 		)
 	)
+
+	port.onMessage.addListener((msg) ->
+		chrome.tabs.update(msg.id, {active: true})
+	)
 )
