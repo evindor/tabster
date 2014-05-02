@@ -6,7 +6,7 @@
 	display: none;
 	top: 0;
 	left: 0;
-	z-index: 9998;
+	z-index: 9990;
 }
 
 .tabster-overflow.visible {
@@ -34,7 +34,6 @@
 	white-space: nowrap;
 	width: 100%;
 	overflow: hidden;
-	position: relative;
 }
 
 .tabster-tab-url {
@@ -43,5 +42,18 @@
 	white-space: nowrap;
 	width: 100%;
 	overflow: hidden;
-	position: relative;
+}
+
+.tabster-tab-key {
+	position: absolute;
+	width: 100%;
+	font-size: 40px;
+	font-weight: bold;
+	opacity: 0.3;
+	text-align: center;
+	color: #ccc;
+	vertical-align: middle;
+	top: 20px;
+	left: 0;
+	z-index: 9993;
 }
