@@ -11,6 +11,7 @@
   "devDependencies": {
     "gulp": "^3.6.2",
     "gulp-browserify": "^0.5.0",
-    "coffeeify": "^0.6.0"
+    "coffeeify": "^0.6.0",
+    "gulp-rename": "^1.2.0"
   }
 }

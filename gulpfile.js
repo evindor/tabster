@@ -1,13 +1,25 @@
 var gulp = require("gulp"),
-	browserify = require("gulp-browserify");
+	browserify = require("gulp-browserify"),
+	rename = require("gulp-rename");
 
 gulp.task('build:content', function() {
-	gulp.src('extension/content.coffee')
+	gulp.src('extension/content.coffee', {read: false})
 		.pipe(browserify({
 			transform: ['coffeeify'],
 			extensions: ['.coffee']
 		}))
-		.pipe(gulp.dest('build/'))
+		.pipe(rename('content.js'))
+		.pipe(gulp.dest('build/'));
+})
+
+gulp.task('build:bg', function() {
+	gulp.src('extension/background.coffee', {read: false})
+		.pipe(browserify({
+			transform: ['coffeeify'],
+			extensions: ['.coffee']
+		}))
+		.pipe(rename('background.js'))
+		.pipe(gulp.dest('build/'));
 })
 
 gulp.task('copy', function() {
@@ -15,4 +27,4 @@ gulp.task('copy', function() {
 		.pipe(gulp.dest('build/'));
 })
 
-gulp.task('build', ['build:content', 'copy']);
+gulp.task('build', ['build:content', 'build:bg', 'copy']);

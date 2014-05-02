@@ -12,16 +12,20 @@
   ],
   "content_scripts": [
     {
-      "matches": ["*"],
+      "matches": ["<all_urls>"],
       "css": ["content.css"],
       "js": ["content.js"]
     }
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "commands": {
-    "_execute_browser_action": {
+    "showTabs": {
       "suggested_key": {
         "default": "Alt+T"
-      }
+      },
+      "description": "Show tabs!"
     }
   }
 }
