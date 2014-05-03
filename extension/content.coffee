@@ -2,14 +2,12 @@ port = chrome.runtime.connect()
 overflow = undefined
 tabsView = undefined
 
-keys = ['a', 's', 'd', 'f', 'h', 'j', 'k', 'l']
-extraKeys = []
+baseKeys = ['a', 's', 'd', 'f', 'h', 'j', 'k', 'l']
+keys = []
 
-for key in keys
-	for key2 in keys
-		extraKeys.push(key + key2)
-
-keys = keys.concat extraKeys
+for key in baseKeys
+	for key2 in baseKeys
+		keys.push(key + key2)
 
 port.onMessage.addListener (tabs) ->
 	unless overflow
