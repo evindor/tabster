@@ -6,6 +6,9 @@ chrome.runtime.onConnect.addListener((port)->
 	)
 
 	port.onMessage.addListener((msg) ->
-		chrome.tabs.update(msg.id, {active: true})
+		if "switchTab" == msg.method
+			return chrome.tabs.update(msg.id, {active: true})
+		if "closeTab" == msg.method
+			chrome.tabs.remove(msg.id)
 	)
 )

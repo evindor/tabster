@@ -29,6 +29,21 @@
 	opacity: 1;
 }
 
+.tabster-overflow.tabster-close-mode-true .tabster-close-mode-warning {
+	display: block;
+}
+
+.tabster-close-mode-warning {
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 160px;
+	height: 20px;
+	background: red;
+	left: 50%;
+	margin-left: -80px;
+}
+
 .tabster-tabs-view {
 	margin: 10px auto;
 	width: 100%;
@@ -53,6 +68,10 @@
 
 .tabster-tab.tabster-hit .tabster-tab-first-key {
 	color: gold;
+}
+
+.tabster-close-mode-warning .tabster-tab.tabster-hit .tabster-tab-first-key {
+	color: red;
 }
 
 .tabster-tab-title {

@@ -4,6 +4,7 @@ tabsView = undefined
 controlInput = undefined
 tabsterActive = false
 buffer = null
+closeMode = false
 
 baseKeys = ['a', 's', 'd', 'f', 'h', 'j', 'k', 'l']
 keys = []
@@ -20,7 +21,12 @@ port.onMessage.addListener (tabs) ->
 		tabsView = document.createElement 'div'
 		tabsView.id = 'tabster-tabs-view'
 
+		closeWarning = document.createElement 'div'
+		closeWarning.className = 'tabster-close-mode-warning'
+		closeWarning.innerHTML = 'Close mode'
+
 		overflow.appendChild tabsView
+		overflow.appendChild closeWarning
 		document.body.appendChild overflow
 
 		addEvents(document)
@@ -32,6 +38,7 @@ port.onMessage.addListener (tabs) ->
 		firstKey = keys[tab.index].substring(0, 1)
 		lastKey = keys[tab.index].substring(1, 2)
 		tabView.className = "tabster-tab tabster-first-key-#{firstKey} tabster-last-key-#{lastKey}"
+		tabView.tabId = tab.id
 		tabView.innerHTML = "
 		<div class='tabster-tab-title'><img src='#{tab.favIconUrl}' class='tabster-favicon'/>#{tab.title}</div>
 		<div class='tabster-tab-url'>#{tab.url.replace(/^http(s)?:\/\//, "")}</div>
@@ -49,17 +56,24 @@ tabsterSwitchTab = (id) ->
 		id: id
 	)
 
+tabsterDecativate = () ->
+	overflow.classList.remove 'tabster-typing'
+	overflow.classList.remove "tabster-close-mode-true"
+	overflow.classList.add "tabster-close-mode-false"
+	buffer = null
+	closeMode = false
+
 tabsterClose = () ->
 	overflow.classList.remove 'visible'
-	overflow.classList.remove 'tabster-typing'
 	tabsterActive = false
+	tabsterDecativate()
 
 tabsterUndo = () ->
-	buffer = null
 	tabs = document.querySelectorAll '.tabster-tab.tabster-hit'
 	for tab in tabs
 		tab.classList.remove 'tabster-hit'
 	overflow.classList.remove 'tabster-typing'
+	buffer = null
 
 handleKeyEvents = (e) ->
 	return e unless (tabsterActive)
@@ -72,6 +86,8 @@ handleKeyEvents = (e) ->
 	key = String.fromCharCode(e.keyCode).toLowerCase()
 	if key in baseKeys
 		updateTabs(key)
+	if "x" == key
+		toggleCloseMode()
 
 
 addEvents = () ->
@@ -83,6 +99,12 @@ updateTabs = (key) ->
 		for tab in buffer
 			if tab.className.search(".tabster-last-key-#{key}") > -1
 				buffer = null
+				if closeMode
+					tabsterUndo()
+					return port.postMessage(
+						method: 'closeTab'
+						id: tab.tabId
+					) && tab.remove()
 				return tab.click()
 	
 	possibleHits = document.querySelectorAll ".tabster-first-key-#{key}"
@@ -90,3 +112,8 @@ updateTabs = (key) ->
 	for tab in possibleHits
 		tab.classList.add 'tabster-hit'
 	overflow.classList.add 'tabster-typing'
+
+toggleCloseMode = () ->
+	closeMode = !closeMode
+	overflow.classList.remove "tabster-close-mode-#{!closeMode}"
+	overflow.classList.add "tabster-close-mode-#{closeMode}"
