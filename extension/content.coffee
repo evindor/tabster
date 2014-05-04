@@ -89,6 +89,7 @@ handleKeyEvents = (e) ->
 		updateTabs(key)
 	if "x" == key
 		toggleCloseMode()
+	return false
 
 
 addEvents = () ->
@@ -119,3 +120,4 @@ toggleCloseMode = () ->
 	closeMode = !closeMode
 	overflow.classList.remove "tabster-close-mode-#{!closeMode}"
 	overflow.classList.add "tabster-close-mode-#{closeMode}"
+

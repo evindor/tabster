@@ -2,13 +2,11 @@
   "manifest_version": 2,
 
   "name": "Tabster",
-  "description": "Manage tabs",
-  "version": "1.0",
-
+  "description": "Manage tabs with hotkeys!",
+  "version": "1.1",
   "permissions": [
     "contentSettings",
-    "tabs",
-    "tabCapture"
+    "tabs"
   ],
   "content_scripts": [
     {
