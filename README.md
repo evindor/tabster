@@ -1,6 +1,7 @@
 # Tabster
 
 Manage your tabs with hotkeys!
+[Video](http://youtu.be/yoMqud8pV18)
 
 ### Usage
 To open Tabster press `Alt + T`.
