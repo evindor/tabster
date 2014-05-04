@@ -102,10 +102,11 @@ updateTabs = (key) ->
 				buffer = null
 				if closeMode
 					tabsterUndo()
-					return chrome.runtime.sendMessage(
+					chrome.runtime.sendMessage(
 						method: 'closeTab'
 						id: tab.tabId
-					) && tab.remove()
+					)
+					return tab.remove()
 				return tab.click()
 	
 	possibleHits = document.querySelectorAll ".tabster-first-key-#{key}"

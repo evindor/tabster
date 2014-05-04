@@ -15,6 +15,7 @@
 	left: 0;
 	z-index: 9990;
 	font-family: "Open Sans", Arial, "Lucida Grande", sans-serif;
+	text-align: left
 }
 
 .tabster-overflow.visible {
