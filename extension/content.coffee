@@ -1,6 +1,8 @@
 port = chrome.runtime.connect()
 overflow = undefined
 tabsView = undefined
+controlInput = undefined
+tabsterActive = false
 
 baseKeys = ['a', 's', 'd', 'f', 'h', 'j', 'k', 'l']
 keys = []
@@ -20,6 +22,8 @@ port.onMessage.addListener (tabs) ->
 		overflow.appendChild tabsView
 		document.body.appendChild overflow
 
+		addEvents(document)
+
 	tabsView.innerHTML = ''
 
 	for tab in tabs
@@ -34,6 +38,7 @@ port.onMessage.addListener (tabs) ->
 		tabView.addEventListener('click', tabsterSwitchTab.bind(this, tab.id), false)
 
 	overflow.className += " visible"
+	tabsterActive = true
 
 tabsterSwitchTab = (id) ->
 	tabsterClose()
@@ -44,3 +49,13 @@ tabsterSwitchTab = (id) ->
 
 tabsterClose = () ->
 	overflow.className = 'tabster-overflow'
+	tabsterActive = false
+
+handleKeyEvents = (e) ->
+	return e unless (tabsterActive)
+	e.preventDefault()
+	if 27 == e.keyCode
+		tabsterClose()
+
+addEvents = () ->
+	document.addEventListener('keyup', handleKeyEvents, false)
