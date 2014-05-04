@@ -3,6 +3,7 @@ overflow = undefined
 tabsView = undefined
 controlInput = undefined
 tabsterActive = false
+buffer = null
 
 baseKeys = ['a', 's', 'd', 'f', 'h', 'j', 'k', 'l']
 keys = []
@@ -38,7 +39,7 @@ port.onMessage.addListener (tabs) ->
 		tabsView.appendChild(tabView)
 		tabView.addEventListener('click', tabsterSwitchTab.bind(this, tab.id), false)
 
-	overflow.className += " visible"
+	overflow.classList.add("visible")
 	tabsterActive = true
 
 tabsterSwitchTab = (id) ->
@@ -49,23 +50,31 @@ tabsterSwitchTab = (id) ->
 	)
 
 tabsterClose = () ->
-	overflow.className = 'tabster-overflow'
+	overflow.classList.remove("visible")
 	tabsterActive = false
+
+tabsterUndo = () ->
+	buffer = null
+	tabs = document.querySelectorAll(".tabster-tab.tabster-hit")
+	for tab in tabs
+		tab.classList.remove('tabster-hit')
 
 handleKeyEvents = (e) ->
 	return e unless (tabsterActive)
 	e.preventDefault()
 	if 27 == e.keyCode
-		tabsterClose()
+		if buffer
+			tabsterUndo()
+		else
+			tabsterClose()
 	key = String.fromCharCode(e.keyCode).toLowerCase()
 	if key in baseKeys
 		updateTabs(key)
 
 
 addEvents = () ->
-	document.addEventListener('keyup', handleKeyEvents, false)
+	document.addEventListener 'keyup', handleKeyEvents, false
 
-buffer = []
 updateTabs = (key) ->
 	tabs = document.querySelectorAll(".tabster-tab")
 	if buffer
@@ -74,7 +83,7 @@ updateTabs = (key) ->
 				buffer = null
 				return tab.click()
 	
-	possibleHits = document.querySelectorAll(".tabster-first-key-#{key}")
+	possibleHits = document.querySelectorAll ".tabster-first-key-#{key}"
 	buffer = possibleHits
 	for tab in possibleHits
-		tab.className += ' tabster-hit'
+		tab.classList.add 'tabster-hit'
