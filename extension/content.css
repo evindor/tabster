@@ -39,9 +39,13 @@
 	top: 0;
 	width: 160px;
 	height: 20px;
-	background: red;
+	background: #cc3300;
 	left: 50%;
+	color: #eee;
+	text-align: center;
 	margin-left: -80px;
+	border-radius: 0 0 6px 6px;
+
 }
 
 .tabster-tabs-view {
@@ -70,8 +74,8 @@
 	color: gold;
 }
 
-.tabster-close-mode-warning .tabster-tab.tabster-hit .tabster-tab-first-key {
-	color: red;
+.tabster-close-mode-true .tabster-tab.tabster-hit .tabster-tab-first-key {
+	color: #cc3300;
 }
 
 .tabster-tab-title {

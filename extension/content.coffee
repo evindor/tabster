@@ -1,4 +1,3 @@
-port = chrome.runtime.connect()
 overflow = undefined
 tabsView = undefined
 controlInput = undefined
@@ -13,7 +12,9 @@ for key in baseKeys
 	for key2 in baseKeys
 		keys.push(key + key2)
 
-port.onMessage.addListener (tabs) ->
+chrome.runtime.onMessage.addListener (msg) ->
+	return false unless "showTabs" == msg.method
+	tabs = msg.tabs
 	unless overflow
 		overflow = document.createElement 'div'
 		overflow.className = 'tabster-overflow'
@@ -51,7 +52,7 @@ port.onMessage.addListener (tabs) ->
 
 tabsterSwitchTab = (id) ->
 	tabsterClose()
-	port.postMessage(
+	chrome.runtime.sendMessage(
 		method: "switchTab"
 		id: id
 	)
@@ -101,7 +102,7 @@ updateTabs = (key) ->
 				buffer = null
 				if closeMode
 					tabsterUndo()
-					return port.postMessage(
+					return chrome.runtime.sendMessage(
 						method: 'closeTab'
 						id: tab.tabId
 					) && tab.remove()
