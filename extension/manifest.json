@@ -25,5 +25,8 @@
       },
       "description": "Show tabs!"
     }
+  },
+  "icons": {
+    "128": "icon128.png"
   }
 }

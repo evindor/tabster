@@ -23,7 +23,10 @@ gulp.task('build:bg', function() {
 })
 
 gulp.task('copy', function() {
-	gulp.src(['extension/manifest.json', 'extension/content.css', 'extension/opensans.woff'])
+	gulp.src([
+		'extension/manifest.json',
+		'extension/content.css',
+		'extension/icon128.png'])
 		.pipe(gulp.dest('build/'));
 })
 
