@@ -27,13 +27,14 @@ port.onMessage.addListener (tabs) ->
 	tabsView.innerHTML = ''
 
 	for tab in tabs
-		console.log(tab);
 		tabView = document.createElement 'div'
-		tabView.className = 'tabster-tab'
+		firstKey = keys[tab.index].substring(0, 1)
+		lastKey = keys[tab.index].substring(1, 2)
+		tabView.className = "tabster-tab tabster-first-key-#{firstKey} tabster-last-key-#{lastKey}"
 		tabView.innerHTML = "
 		<div class='tabster-tab-title'><img src='#{tab.favIconUrl}' class='tabster-favicon'/>#{tab.title}</div>
 		<div class='tabster-tab-url'>#{tab.url.replace(/^http(s)?:\/\//, "")}</div>
-		<div class='tabster-tab-key'>#{keys[tab.index]}</div>"
+		<div class='tabster-tab-key'><span class='tabster-tab-first-key'>#{firstKey}</span>#{lastKey}</div>"
 		tabsView.appendChild(tabView)
 		tabView.addEventListener('click', tabsterSwitchTab.bind(this, tab.id), false)
 
@@ -56,6 +57,24 @@ handleKeyEvents = (e) ->
 	e.preventDefault()
 	if 27 == e.keyCode
 		tabsterClose()
+	key = String.fromCharCode(e.keyCode).toLowerCase()
+	if key in baseKeys
+		updateTabs(key)
+
 
 addEvents = () ->
 	document.addEventListener('keyup', handleKeyEvents, false)
+
+buffer = []
+updateTabs = (key) ->
+	tabs = document.querySelectorAll(".tabster-tab")
+	if buffer
+		for tab in buffer
+			if tab.className.search(".tabster-last-key-#{key}") > -1
+				buffer = null
+				return tab.click()
+	
+	possibleHits = document.querySelectorAll(".tabster-first-key-#{key}")
+	buffer = possibleHits
+	for tab in possibleHits
+		tab.className += ' tabster-hit'

@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(https://themes.googleusercontent.com/static/fonts/sourcecodepro/v4/mrl8jkM18OlOQN8JLgasD9Hq-FFgoDNV3GTKpHwuvtI.woff) format('woff');
+}
+
 .tabster-overflow {
 	background: rgba(215, 215, 216, 0.95);
 	width: 100%;
@@ -7,6 +26,7 @@
 	top: 0;
 	left: 0;
 	z-index: 9990;
+	font-family: "Open Sans", Arial, "Lucida Grande", sans-serif;
 }
 
 .tabster-overflow.visible {
@@ -15,7 +35,7 @@
 
 .tabster-tabs-view {
 	margin: 10px auto;
-	width: 95%;
+	width: 100%;
 	position: relative;
 }
 
@@ -24,7 +44,7 @@
 	display: inline-block;
 	padding: 10px;
 	font-size: 14px;
-	width: 25%;
+	width: 23%;
 	overflow: hidden;
 	vertical-align: top;
 	position: relative;
@@ -33,6 +53,10 @@
 
 .tabster-tab:hover {
 	font-weight: bold;
+}
+
+.tabster-tab.tabster-hit .tabster-tab-first-key {
+	color: gold;
 }
 
 .tabster-tab-title {
