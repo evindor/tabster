@@ -2,19 +2,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
-}
-@font-face {
-  font-family: 'Source Code Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(https://themes.googleusercontent.com/static/fonts/sourcecodepro/v4/mrl8jkM18OlOQN8JLgasD9Hq-FFgoDNV3GTKpHwuvtI.woff) format('woff');
+  src: local('Open Sans'), local('OpenSans'), url(opensans.woff) format('woff');
 }
 
 .tabster-overflow {
@@ -31,6 +19,14 @@
 
 .tabster-overflow.visible {
 	display: block;
+}
+
+.tabster-overflow.tabster-typing .tabster-tab {
+	opacity: 0.4;
+}
+
+.tabster-overflow.tabster-typing .tabster-tab.tabster-hit {
+	opacity: 1;
 }
 
 .tabster-tabs-view {
@@ -83,12 +79,13 @@
 	text-align: right;
 	color: #eee;
 	vertical-align: middle;
-	top: 20px;
+	top: 10px;
 	left: 0;
 	z-index: 9993;
 }
 
 .tabster-favicon {
 	width: 20px;
+	height: 20px;
 	margin-right: 10px;
 }

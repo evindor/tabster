@@ -50,14 +50,16 @@ tabsterSwitchTab = (id) ->
 	)
 
 tabsterClose = () ->
-	overflow.classList.remove("visible")
+	overflow.classList.remove 'visible'
+	overflow.classList.remove 'tabster-typing'
 	tabsterActive = false
 
 tabsterUndo = () ->
 	buffer = null
-	tabs = document.querySelectorAll(".tabster-tab.tabster-hit")
+	tabs = document.querySelectorAll '.tabster-tab.tabster-hit'
 	for tab in tabs
-		tab.classList.remove('tabster-hit')
+		tab.classList.remove 'tabster-hit'
+	overflow.classList.remove 'tabster-typing'
 
 handleKeyEvents = (e) ->
 	return e unless (tabsterActive)
@@ -76,7 +78,7 @@ addEvents = () ->
 	document.addEventListener 'keyup', handleKeyEvents, false
 
 updateTabs = (key) ->
-	tabs = document.querySelectorAll(".tabster-tab")
+	tabs = document.querySelectorAll '.tabster-tab'
 	if buffer
 		for tab in buffer
 			if tab.className.search(".tabster-last-key-#{key}") > -1
@@ -87,3 +89,4 @@ updateTabs = (key) ->
 	buffer = possibleHits
 	for tab in possibleHits
 		tab.classList.add 'tabster-hit'
+	overflow.classList.add 'tabster-typing'
