@@ -23,10 +23,11 @@ port.onMessage.addListener (tabs) ->
 	tabsView.innerHTML = ''
 
 	for tab in tabs
+		console.log(tab);
 		tabView = document.createElement 'div'
 		tabView.className = 'tabster-tab'
 		tabView.innerHTML = "
-		<div class='tabster-tab-title'>#{tab.title}</div>
+		<div class='tabster-tab-title'><img src='#{tab.favIconUrl}' class='tabster-favicon'/>#{tab.title}</div>
 		<div class='tabster-tab-url'>#{tab.url.replace(/^http(s)?:\/\//, "")}</div>
 		<div class='tabster-tab-key'>#{keys[tab.index]}</div>"
 		tabsView.appendChild(tabView)

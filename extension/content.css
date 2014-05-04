@@ -1,5 +1,5 @@
 .tabster-overflow {
-	background: rgba(0, 0, 0, 0.9);
+	background: rgba(215, 215, 216, 0.95);
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -20,7 +20,7 @@
 }
 
 .tabster-tab {
-	color: #eee;
+	color: #333;
 	display: inline-block;
 	padding: 10px;
 	font-size: 14px;
@@ -28,6 +28,11 @@
 	overflow: hidden;
 	vertical-align: top;
 	position: relative;
+	cursor: pointer;
+}
+
+.tabster-tab:hover {
+	font-weight: bold;
 }
 
 .tabster-tab-title {
@@ -38,7 +43,7 @@
 
 .tabster-tab-url {
 	font-size: 12px;
-	color: #ddd;
+	color: #999;
 	white-space: nowrap;
 	width: 100%;
 	overflow: hidden;
@@ -47,13 +52,19 @@
 .tabster-tab-key {
 	position: absolute;
 	width: 100%;
+	padding-right: 10px;
 	font-size: 40px;
 	font-weight: bold;
-	opacity: 0.3;
-	text-align: center;
-	color: #ccc;
+	opacity: 0.8;
+	text-align: right;
+	color: #eee;
 	vertical-align: middle;
 	top: 20px;
 	left: 0;
 	z-index: 9993;
+}
+
+.tabster-favicon {
+	width: 20px;
+	margin-right: 10px;
 }
