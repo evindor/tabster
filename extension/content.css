@@ -6,7 +6,7 @@
 	display: none;
 	top: 0;
 	left: 0;
-	z-index: 9990;
+	z-index: 99999;
 	font-family: "Lucida Grande", sans-serif;
 	text-align: left
 }
