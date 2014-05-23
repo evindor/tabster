@@ -26,6 +26,7 @@ gulp.task('copy', function() {
 	gulp.src([
 		'extension/manifest.json',
 		'extension/content.css',
+		'extension/doc.png',
 		'extension/icon128.png'])
 		.pipe(gulp.dest('build/'));
 })
