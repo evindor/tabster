@@ -96,9 +96,14 @@ handleKeyEvents = (e) ->
         toggleCloseMode()
     return false
 
+handleBlur = (e) ->
+    return e unless (tabsterActive)
+    e.preventDefault()
+    e.target.focus()
 
 addEvents = (target) ->
     target.addEventListener 'keyup', handleKeyEvents, false
+    target.addEventListener 'blur', handleBlur, false
     setTimeout () ->
         target.focus()
     , 0
