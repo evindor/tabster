@@ -39,6 +39,7 @@
 	text-align: center;
 	margin-left: -80px;
 	border-radius: 0 0 6px 6px;
+	z-index: 99998;
 
 }
 
