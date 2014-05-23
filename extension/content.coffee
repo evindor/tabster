@@ -92,8 +92,8 @@ handleKeyEvents = (e) ->
     return false
 
 
-addEvents = () ->
-    document.addEventListener 'keyup', handleKeyEvents, false
+addEvents = (target) ->
+    target.addEventListener 'keyup', handleKeyEvents, false
 
 updateTabs = (key) ->
     tabs = document.querySelectorAll '.tabster-tab'
