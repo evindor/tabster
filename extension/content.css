@@ -108,3 +108,8 @@
 	margin-right: 10px;
 	vertical-align: middle;
 }
+
+.tabster-input {
+	position: absolute;
+	left: -9999px;
+}

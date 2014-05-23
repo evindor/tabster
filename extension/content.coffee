@@ -26,11 +26,16 @@ chrome.runtime.onMessage.addListener (msg) ->
         closeWarning.className = 'tabster-close-mode-warning'
         closeWarning.innerHTML = 'Close mode'
 
+        input = document.createElement 'input'
+        input.type = "text"
+        input.className = "tabster-input"
+
         overflow.appendChild tabsView
         overflow.appendChild closeWarning
+        overflow.appendChild input
         document.body.appendChild overflow
 
-        addEvents(document)
+        addEvents(input)
 
     tabsView.innerHTML = ''
 
@@ -94,6 +99,9 @@ handleKeyEvents = (e) ->
 
 addEvents = (target) ->
     target.addEventListener 'keyup', handleKeyEvents, false
+    setTimeout () ->
+        target.focus()
+    , 0
 
 updateTabs = (key) ->
     tabs = document.querySelectorAll '.tabster-tab'
